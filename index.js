@@ -22,18 +22,28 @@ function checkPlayers() {
   }
 }
 player1Submit.addEventListener("click", () => {
+  let player1Input = document.getElementById("player1").value;
+  if (player1Input.trim() === "") {
+    window.alert("Username must have text, player1");
+  } else {
   player1 = document.getElementById("player1").value;
   checkPlayers();
   player1Submit.remove();
   player1div.remove();
   player2div.style.display = "block";
-player2Submit.style.display = "block"
+player2Submit.style.display = "block";
+  }
 });
 player2Submit.addEventListener("click", () => {
+  let player2Input = document.getElementById("player2").value;
+  if (player2Input.trim() === "") {
+    window.alert("Username must have text, player2");
+  } else {
   player2 = document.getElementById("player2").value;
   checkPlayers();
   player2Submit.remove();
   player2div.remove();
+  }
 });
 function changePlayer() {
   if (currentPlayer === "X") {
@@ -93,7 +103,7 @@ function checkWinner() {
   }
   }
 }
-function isTie() {
+async function isTie() {
   let filled = true;
   for (let i = 0; i < 9; i++) {
     if (gameBoard[i] == "") {
@@ -101,17 +111,26 @@ function isTie() {
     }
   }
   if (filled == true) {
-    console.log(`Neither ${player1} or ${player2} won`);
+    window.alert(`Neither ${player1} or ${player2} won`);
+    await waitToClearBoard();
+    resetBoard();
   }
 }
-function declareWinner() {
+async function declareWinner() {
   if (currentPlayer === "X") {
     window.alert(`${player1} WON`);
+    await waitToClearBoard();
+    resetBoard();
   } else if (currentPlayer === "O") {
     window.alert(`${player2} WON`);
+    await waitToClearBoard();
+    resetBoard();
   }
 }
 resetBtn.addEventListener("click", () => {
+resetBoard();
+});
+function resetBoard() {
   gameBoard = ["", "", "", "", "", "", "", "", ""];
   for (let index = 0; index < 9; index++) {
     tableCells[index].textContent = "";
@@ -119,4 +138,8 @@ resetBtn.addEventListener("click", () => {
   gameBoard = ["", "", "", "", "", "", "", "", ""];
   gameOver = false;
   currentPlayer = "X"
-});
+}
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const waitToClearBoard = async () => {
+await delay(2000);
+}
