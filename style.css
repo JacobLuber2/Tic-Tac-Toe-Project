@@ -1,17 +1,13 @@
 td {
-border: 2px solid black;
-height: 120px;
-width: 120px;
-text-align: center;
-font-size: 2rem;
+    /* sets square size */
+    border: 2px solid black;
+    height: 120px;
+    width: 120px;
+    text-align: center;
+    font-size: 2rem;
 }
 table {
-height: 360px;
-width: 360px;
+    /* sets container size */
+    height: 360px;
+    width: 360px;
 }
-input {
-flex-wrap: wrap
-;
-}
-
-
