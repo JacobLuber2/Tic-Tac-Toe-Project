@@ -9,7 +9,7 @@ let player2Submit = document.getElementById("submitplayer2");
 // input + button containers
 let player1div = document.getElementById("player1div");
 let player2div = document.getElementById("player2div");
-// hide board screen
+// input + button containers for p2
 player2div.style.display = "none";
 player2Submit.style.display = "none";
 // set game values'
@@ -83,7 +83,7 @@ let gameBoard = [
     "",
     "",
     "",
-]; /* system's gameboard, hidden */
+]; /* internal gameboard, hidden */
 function fillBoard(id) {
     gameBoard[id - 1] = currentPlayer;
 }
@@ -118,7 +118,7 @@ function checkWinner() {
         isTie();
     }
 }
-async function isTie() {
+function isTie() {
     let filled = true;
     for (let i = 0; i < 9; i++) {
         if (gameBoard[i] == "") {
@@ -129,7 +129,7 @@ async function isTie() {
         window.alert(`Neither ${player1} or ${player2} won`);
     }
 }
-async function declareWinner() {
+function declareWinner() {
     if (currentPlayer === "X") {
         window.alert(`${player1} WON`);
     } else if (currentPlayer === "O") {
